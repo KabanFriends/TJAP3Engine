@@ -8,11 +8,21 @@
 
 ## Project Status
 
-2020-11-07
+2021-01-13
 
-TJAPlayer3 continues to receive small, infrequent updates.
-Most often these are fixes for automatically-reported crashes
-but at times also include small upgrades and clean-ups.
+Until further notice, TJAPlayer3 will only receive very infrequent updates in
+response to crashes reported manually or automatically. These updates will at
+times include small improvements intended to make the software easier to
+maintain over time.
+
+Note that TJAPlayer3 has been very stable for most users for some time now.
+The vast majority of automatically-reported crashes indicate issues with
+custom skins and/or the computer on which the software is running. Graphics
+card/driver issues, for example, are very prominent in automatic error reports.
+
+If you encounter issues operating TJAPlayer3, please ensure that you check
+skin settings or attempt to use a more well-proven skin, and please ensure
+that your computer is up to date and operating properly.
 
 <!-- omit in toc -->
 ## Table of Contents
