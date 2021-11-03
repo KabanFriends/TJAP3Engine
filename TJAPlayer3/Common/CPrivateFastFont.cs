@@ -77,21 +77,6 @@ namespace TJAPlayer3
 		{
 			return DrawPrivateFont( drawstr, DrawMode.Edge | DrawMode.Gradation, fontColor, edgeColor, gradationTopColor, gradataionBottomColor );
 		}
-
-		/// <summary>
-		/// 文字列を描画したテクスチャを返す
-		/// </summary>
-		/// <param name="drawstr">描画文字列</param>
-		/// <param name="fontColor">描画色</param>
-		/// <param name="edgeColor">縁取色</param>
-		/// <param name="gradationTopColor">グラデーション 上側の色</param>
-		/// <param name="gradationBottomColor">グラデーション 下側の色</param>
-		/// <returns>描画済テクスチャ</returns>
-		public Bitmap DrawPrivateFont( string drawstr, Color fontColor, Color edgeColor, bool bVertical )
-		{
-			return DrawPrivateFont_V( drawstr, fontColor, edgeColor, bVertical );
-		}
-
 		#endregion
 
 		protected new Bitmap DrawPrivateFont( string drawstr, DrawMode drawmode, Color fontColor, Color edgeColor, Color gradationTopColor, Color gradationBottomColor )
@@ -128,63 +113,6 @@ namespace TJAPlayer3
 				fc.ptOrigin = PtOrigin;
 				listFontCache.Add( fc );
 				Debug.WriteLine( drawstr + ": Cacheにヒットせず。(cachesize=" + listFontCache.Count + ")" );
-				#endregion
-				#region [ もしキャッシュがあふれたら、最も古いキャッシュを破棄する ]
-				if ( listFontCache.Count > MAXCACHESIZE )
-				{
-					Debug.WriteLine( "Cache溢れ。" + listFontCache[ 0 ].drawstr + " を解放します。" );
-					if ( listFontCache[ 0 ].bmp != null )
-					{
-						listFontCache[ 0 ].bmp.Dispose();
-					}
-					listFontCache.RemoveAt( 0 );
-				}
-				#endregion
-
-				// 呼び出し元のDispose()でキャッシュもDispose()されないように、Clone()で返す。
-				return (Bitmap)listFontCache[ listFontCache.Count - 1 ].bmp.Clone();
-			}
-			else
-			{
-				Debug.WriteLine( drawstr + ": Cacheにヒット!! index=" + index );
-				#region [ キャッシュにヒット。レンダリングは行わず、キャッシュ内のデータを返して終了。]
-				RectStrings = listFontCache[ index ].rectStrings;
-				PtOrigin = listFontCache[ index ].ptOrigin;
-				// 呼び出し元のDispose()でキャッシュもDispose()されないように、Clone()で返す。
-				return (Bitmap) listFontCache[ index ].bmp.Clone();
-				#endregion
-			}
-		}
-
-		protected new Bitmap DrawPrivateFont_V( string drawstr, Color fontColor, Color edgeColor, bool bVertical )
-		{
-			#region [ 以前レンダリングしたことのある文字列/フォントか? (キャッシュにヒットするか?) ]
-			int index = listFontCache.FindIndex(
-				delegate( FontCache fontcache )
-				{
-					return (
-						drawstr == fontcache.drawstr &&
-						fontColor == fontcache.fontColor &&
-						edgeColor == fontcache.edgeColor &&
-						bVertical == true
-						// _font == fontcache.font
-					);
-				}
-			);
-			#endregion
-			if ( index < 0 )
-			{
-				// キャッシュにヒットせず。
-				#region [ レンダリングして、キャッシュに登録 ]
-				FontCache fc = new FontCache();
-                fc.bmp = base.DrawPrivateFont_V(drawstr, fontColor, edgeColor, true);
-				fc.drawstr = drawstr;
-				fc.fontColor = fontColor;
-				fc.edgeColor = edgeColor;
-				fc.rectStrings = RectStrings;
-				fc.ptOrigin = PtOrigin;
-				listFontCache.Add( fc );
-				 Debug.WriteLine( drawstr + ": Cacheにヒットせず。(cachesize=" + listFontCache.Count + ")" );
 				#endregion
 				#region [ もしキャッシュがあふれたら、最も古いキャッシュを破棄する ]
 				if ( listFontCache.Count > MAXCACHESIZE )
