@@ -120,7 +120,6 @@
     <Compile Include="Common\C定数.cs" />
     <Compile Include="Common\FontUtilities.cs" />
     <Compile Include="Common\PreciseStringMeasurement\CPreciseStringMeasurer.cs" />
-    <Compile Include="Common\Discord.cs" />
     <Compile Include="Common\PreciseStringMeasurement\DirectBitmap.cs" />
     <Compile Include="Common\PreciseStringMeasurement\MeasureStringPreciselyCacheKey.cs" />
     <Compile Include="ErrorReporting\ErrorReporter.cs" />
@@ -157,6 +156,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Stages\Impl\CStageサンプル.cs" />
+    <Compile Include="Stages\Impl\Objects\CDVDLogo.cs" />
     <Compile Include="Stages\TextureLoader.cs" />
     <Compile Include="Stages\Impl\CStage起動.cs" />
     <Compile Include="Stages\CStage.cs" />

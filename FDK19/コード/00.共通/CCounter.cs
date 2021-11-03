@@ -1,4 +1,6 @@
-﻿namespace FDK
+﻿using System;
+
+namespace FDK
 {
 	/// <summary>
 	/// 一定間隔で単純増加する整数（カウント値）を扱う。
@@ -202,7 +204,27 @@
 			}
 		}
 
-        /// <summary>
+		public void t進行(Action method)
+		{
+			if ((this.timer != null) && (this.n現在の経過時間ms != CTimer.n未使用))
+			{
+				long num = this.timer.n現在時刻;
+				if (num < this.n現在の経過時間ms)
+					this.n現在の経過時間ms = num;
+
+				while ((num - this.n現在の経過時間ms) >= this.n間隔ms)
+				{
+					if (++this.n現在の値 > this.n終了値)
+						this.n現在の値 = this.n終了値;
+
+					this.n現在の経過時間ms += this.n間隔ms;
+
+					method();
+				}
+			}
+		}
+
+		/// <summary>
 		/// 前回の t進行() の呼び出しからの経過時間をもとに、必要なだけカウント値を増加させる。
 		/// カウント値が終了値に達している場合は、それ以上増加しない（終了値を維持する）。
 		/// </summary>
@@ -250,7 +272,28 @@
 			}
 		}
 
-        /// <summary>
+		public void t進行Loop(Action method)
+		{
+			if ((this.timer != null) && (this.n現在の経過時間ms != CTimer.n未使用))
+			{
+
+				long num = this.timer.n現在時刻;
+				if (num < this.n現在の経過時間ms)
+					this.n現在の経過時間ms = num;
+
+				while ((num - this.n現在の経過時間ms) >= this.n間隔ms)
+				{
+					if (++this.n現在の値 > this.n終了値)
+						this.n現在の値 = this.n開始値;
+
+					this.n現在の経過時間ms += this.n間隔ms;
+
+					method();
+				}
+			}
+		}
+
+		/// <summary>
 		/// 前回の t進行Loop() の呼び出しからの経過時間をもとに、必要なだけカウント値を増加させる。
 		/// カウント値が終了値に達している場合は、次の増加タイミングで開始値に戻る（値がループする）。
 		/// </summary>

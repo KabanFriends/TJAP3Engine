@@ -927,13 +927,6 @@ namespace TJAPlayer3
 			//---------------------
 			#endregion
 
-            #region Discordの処理
-            Discord.Initialize("428233983025741855");
-            StartupTime = Discord.GetUnixTime();
-            Discord.UpdatePresence("", Properties.Discord.Stage_StartUp, StartupTime);
-            #endregion
-
-
             Trace.TraceInformation( "アプリケーションの初期化を完了しました。" );
 
 
@@ -984,10 +977,6 @@ namespace TJAPlayer3
 				}
 				//---------------------
 				#endregion
-
-                #region Discordの処理
-                Discord.Shutdown();
-                #endregion
                 #region TextureLoaderの処理
                 Tx.Dispose();
                 Tx = null;

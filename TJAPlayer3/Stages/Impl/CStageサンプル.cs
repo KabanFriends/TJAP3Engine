@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FDK;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TJAPlayer3
 {
@@ -21,6 +17,11 @@ namespace TJAPlayer3
 			Trace.Indent();
 			try
 			{
+				hits = 0;
+				cornerHits = 0;
+				this.logo = new CDVDLogo();
+				this.stepCounter = new CCounter(0, 100, 15, TJAPlayer3.Timer);
+
 				base.eフェーズID = CStage.Eフェーズ.共通_通常状態;
 				base.On活性化();
 				Trace.TraceInformation("サンプルステージの活性化を完了しました。");
@@ -71,7 +72,25 @@ namespace TJAPlayer3
 					base.b初めての進行描画 = true;
 				}
 			}
+
+			stepCounter.t進行Loop(t常時実行);
+
+			TJAPlayer3.act文字コンソール.tPrint(10, 10, C文字コンソール.Eフォント種別.白, "TJAP3Engine DVD Screensaver Demo");
+			TJAPlayer3.act文字コンソール.tPrint(10, 30, C文字コンソール.Eフォント種別.白, "Hits: " + hits);
+			TJAPlayer3.act文字コンソール.tPrint(10, 50, C文字コンソール.Eフォント種別.白, "Corner Hits: " + cornerHits);
+
 			return 0;
         }
+
+		private void t常時実行()
+        {
+			logo.tStep();
+		}
+
+		private CDVDLogo logo;
+		public static int hits;
+		public static int cornerHits;
+
+		private CCounter stepCounter;
 	}
 }

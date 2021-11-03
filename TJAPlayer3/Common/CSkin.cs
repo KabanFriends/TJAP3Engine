@@ -748,7 +748,7 @@ namespace TJAPlayer3
         public bool bIsValid(string skinPathFullName)
         {
             string filePathTitle;
-            filePathTitle = System.IO.Path.Combine(skinPathFullName, @"Graphics\1_Title\Background.png");
+            filePathTitle = System.IO.Path.Combine(skinPathFullName, @"SkinConfig.ini");
             return (File.Exists(filePathTitle));
         }
 
