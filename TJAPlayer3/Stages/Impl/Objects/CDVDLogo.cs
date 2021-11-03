@@ -9,8 +9,8 @@ namespace TJAPlayer3
 {
     class CDVDLogo
     {
-        private int x = 0;
-        private int y = 0;
+        public int x = 0;
+        public int y = 0;
         private int hSpeed;
         private int vSpeed;
 
@@ -60,8 +60,6 @@ namespace TJAPlayer3
                 y = 0;
                 this.tHit();
             }
-
-            TJAPlayer3.Tx.DVD_Logo.t2D描画(TJAPlayer3.app.Device, x, y);
         }
 
         private void tHit()

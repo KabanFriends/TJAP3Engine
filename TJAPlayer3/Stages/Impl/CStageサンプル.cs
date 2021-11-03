@@ -74,6 +74,7 @@ namespace TJAPlayer3
 			}
 
 			stepCounter.t進行Loop(t常時実行);
+			TJAPlayer3.Tx.DVD_Logo.t2D描画(TJAPlayer3.app.Device, logo.x, logo.y);
 
 			TJAPlayer3.act文字コンソール.tPrint(10, 10, C文字コンソール.Eフォント種別.白, "TJAP3Engine DVD Screensaver Demo");
 			TJAPlayer3.act文字コンソール.tPrint(10, 30, C文字コンソール.Eフォント種別.白, "Hits: " + hits);
